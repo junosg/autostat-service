@@ -1,4 +1,3 @@
-import logging
 from src.Utils.Test import Test
 
 from scipy import stats
@@ -13,11 +12,7 @@ class ChiSquareIndependenceTest(Test):
         result["passed"] = True
         result["testResults"] = {}
 
-        logging.error(self.dataSource.valueArray)
-
         table = np.array(self.dataSource.valueArray)
-        
-        logging.error(table)
 
         chiSquare = stats.chi2_contingency(table[0])
         
