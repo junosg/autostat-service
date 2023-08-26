@@ -6,6 +6,8 @@ class DataSource():
     valueArray = []
     columns = []
     descriptives = {}
+    predictor: str
+    outcome: str
 
     def __init__(self, data, predictor, outcome):
         valueObject = {}
@@ -27,6 +29,8 @@ class DataSource():
         self.valueObject = valueObject
         self.valueArray = valueArray
         self.columns = columns
+        self.predictor = predictor
+        self.outcome = outcome
 
         self.__setDescriptives()
 
@@ -35,6 +39,8 @@ class DataSource():
             descriptives = stats.describe(self.valueObject[column])
 
             self.descriptives[column] = {
+                "predictor": self.predictor,
+                "outcome": self.outcome,
                 "observationCount": len(self.valueObject[column]),
                 "min": min(self.valueObject[column]),
                 "max": max(self.valueObject[column]),
