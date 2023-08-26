@@ -1,8 +1,9 @@
 from src.Utils.Test import Test
 
-import scipy.stats as stats
+from scipy import stats
 
 class ShapiroWilkTest(Test):
+    name = "Shapiro-Wilk Test"
     def execute(self):
         result = {}
         result["passed"] = True
@@ -15,6 +16,7 @@ class ShapiroWilkTest(Test):
                 result["passed"] = False
 
             result["testResults"][column] = {
+                "test": self.name,
                 "isNormal": bool(shapiro.pvalue > 0.05),
                 "statistic": shapiro.statistic,
                 "pvalue": shapiro.pvalue

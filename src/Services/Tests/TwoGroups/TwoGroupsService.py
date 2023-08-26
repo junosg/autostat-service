@@ -13,7 +13,7 @@ class TwoGroupsService():
         self.alternativeTest = WilcoxonRankSumTest(dataSource)
         
         self.parametricTest.checkAssumptions()
-        
+
     def analyze(self):
         if (self.parametricTest.assumptionsPassed):
             return self.parametricTest.execute()

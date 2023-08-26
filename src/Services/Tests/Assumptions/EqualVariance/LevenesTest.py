@@ -3,6 +3,7 @@ from src.Utils.Test import Test
 from scipy import stats
 
 class LevenesTest(Test):
+    name = "Levene's Test"
     def execute(self):
         result = {}
         result["passed"] = True
@@ -12,7 +13,8 @@ class LevenesTest(Test):
         
         result["passed"] = bool(levenes.pvalue > 0.05)
         result["testResults"] = {
-            "areVariancesEqual": bool(levenes.pvalue > 0.05),
+            "test": self.name,
+            "areVariancesEqual": result["passed"],
             "statistic": levenes.statistic,
             "pvalue": levenes.pvalue
         }

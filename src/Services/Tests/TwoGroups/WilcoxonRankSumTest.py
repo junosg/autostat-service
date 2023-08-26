@@ -1,9 +1,9 @@
 from src.Utils.Test import Test
 
-import scipy.stats as stats
+from scipy import stats
 
 class WilcoxonRankSumTest(Test):
-    name = "Independent T-test"
+    name = "Wilcoxon Rank-Sum Test"
     
     def checkAssumptions(self):
         pass
