@@ -22,7 +22,6 @@ class IndependentTTest(Test):
             "test": self.name,
             "statistic": result.statistic,
             "pvalue": result.pvalue,
-            "assumptionsResults": self.assumptionsResults
         }
         
         return returnValue

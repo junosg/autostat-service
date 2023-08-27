@@ -20,8 +20,14 @@ class TwoGroupsService():
         self.prereqPassed = bool(len(dataSource.columns) == 2)
 
     def analyze(self):
+        returnValue = {}
+        
         if (self.parametricTest.assumptionsPassed):
-            return self.parametricTest.execute()
+            returnValue = self.parametricTest.execute()
         else:
-            return self.alternativeTest.execute()
+            returnValue = self.alternativeTest.execute()
+
+        returnValue["assumptionsResults"] = self.parametricTest.assumptionsResults
+        
+        return returnValue
         

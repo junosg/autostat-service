@@ -21,8 +21,7 @@ class AnovaTest(Test):
         returnValue = {
             "test": self.name,
             "statistic": result.statistic,
-            "pvalue": result.pvalue,
-            "assumptionsResults": self.assumptionsResults
+            "pvalue": result.pvalue
         }
 
         return returnValue
