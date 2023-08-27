@@ -35,18 +35,22 @@ class DataSource():
         self.__setDescriptives()
 
     def __setDescriptives(self):
+        descriptives = {}
+        
         for column in self.columns:
-            descriptives = stats.describe(self.valueObject[column])
+            descriptive = stats.describe(self.valueObject[column])
 
-            self.descriptives[column] = {
+            descriptives[column] = {
                 "predictor": self.predictor,
                 "outcome": self.outcome,
                 "observationCount": len(self.valueObject[column]),
                 "min": min(self.valueObject[column]),
                 "max": max(self.valueObject[column]),
-                "mean": descriptives.mean,
-                "variance": descriptives.variance,
-                "skewness": descriptives.skewness,
-                "kurtosis": descriptives.kurtosis
+                "mean": descriptive.mean,
+                "variance": descriptive.variance,
+                "skewness": descriptive.skewness,
+                "kurtosis": descriptive.kurtosis
             }
+            
+        self.descriptives = descriptives
         
