@@ -13,7 +13,7 @@ test_bp = Blueprint('test', __name__)
 def test():    
     try:
         TestRouteValidate(request.json)
-        dataSource = DataSource(request.json['data'], request.json['predictor'], request.json['outcome'])
+        dataSource = DataSource(request.json['data'], request.json['predictor'], request.json['outcome'], request.json['predictorPaired'])
 
         result = TestService(dataSource).autoAnalyze()
         return jsonify(result)

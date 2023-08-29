@@ -1,23 +1,23 @@
-from src.Services.Tests.TwoGroups.IndependentTTest import IndependentTTest
-from src.Services.Tests.TwoGroups.WilcoxonRankSumTest import WilcoxonRankSumTest
+from src.Services.Tests.PairedGroups.PairedTTest import PairedTTest
+from src.Services.Tests.PairedGroups.WilcoxonSignedRankTest import WilcoxonSignedRankTest
 from src.Utils.DataSource import DataSource
 from src.Utils.Test import Test
 
 
-class TwoGroupsService():
-    parametricTest: IndependentTTest
-    alternativeTest: WilcoxonRankSumTest
+class PairedGroupsService():
+    parametricTest: PairedTTest
+    alternativeTest: WilcoxonSignedRankTest
     prereqPassed: True
     
     def __init__(self, dataSource: DataSource) -> None:
-        self.parametricTest = IndependentTTest(dataSource)
-        self.alternativeTest = WilcoxonRankSumTest(dataSource)
+        self.parametricTest = PairedTTest(dataSource)
+        self.alternativeTest = WilcoxonSignedRankTest(dataSource)
         
         self.__checkPrerequisites(dataSource)
         self.parametricTest.checkAssumptions()
 
     def __checkPrerequisites(self, dataSource: DataSource):
-        self.prereqPassed = bool(len(dataSource.columns) == 2) and dataSource.predictorPaired == False
+        self.prereqPassed = bool(len(dataSource.columns) == 2) and dataSource.predictorPaired
 
     def analyze(self):
         returnValue = {}

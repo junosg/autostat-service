@@ -7,9 +7,10 @@ class DataSource():
     columns = []
     descriptives = {}
     predictor: str
+    predictorPaired: bool
     outcome: str
 
-    def __init__(self, data, predictor, outcome):
+    def __init__(self, data, predictor, outcome, predictorPaired = False):
         valueObject = {}
         valueArray = []
         columns = []
@@ -31,6 +32,7 @@ class DataSource():
         self.columns = columns
         self.predictor = predictor
         self.outcome = outcome
+        self.predictorPaired = predictorPaired
 
         self.__setDescriptives()
 
