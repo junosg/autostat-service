@@ -1,6 +1,7 @@
 import logging
 from src.Services.Tests.Assumptions.EqualVariance.LevenesTest import LevenesTest
 from src.Services.Tests.Assumptions.Normality.ShapiroWilkTest import ShapiroWilkTest
+from src.Services.Tests.PostHocs.TukeysTest import TukeysTest
 from src.Utils.Test import Test
 from scipy import stats
 
@@ -21,7 +22,10 @@ class AnovaTest(Test):
         returnValue = {
             "test": self.name,
             "statistic": result.statistic,
-            "pvalue": result.pvalue
+            "pvalue": result.pvalue,
         }
+        
+        if (result.pvalue < 0.05):
+            returnValue.postHoc = TukeysTest(self.dataSource).execute()
 
         return returnValue
