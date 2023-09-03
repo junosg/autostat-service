@@ -12,11 +12,16 @@ test_bp = Blueprint('test', __name__)
 @test_bp.route('/test', methods=['POST'])
 def test():    
     try:
-        TestRouteValidate(request.json)
-        dataSource = DataSource(request.json['data'], request.json['predictor'], request.json['outcome'], request.json['predictorPaired'])
+        headers = request.headers
 
-        result = TestService(dataSource).autoAnalyze()
-        return jsonify(result)
+        if (headers.get('auth') and headers['auth'] == 'JunoDev2023'):
+            TestRouteValidate(request.json)
+            dataSource = DataSource(request.json['data'], request.json['predictor'], request.json['outcome'], request.json['predictorPaired'])
+
+            result = TestService(dataSource).autoAnalyze()
+            return jsonify(result)
+        else:
+            return jsonify({'message': 'Unauthorized'}), 401
+
     except Exception as error:
-        logging.error(error)
-        return error, 403
+        return jsonify({'message': 'Analysis failed. Please try again.'}), 403
