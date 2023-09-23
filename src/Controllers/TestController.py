@@ -24,4 +24,5 @@ def test():
             return jsonify({'message': 'Unauthorized'}), 401
 
     except Exception as error:
+        logging.error(error)
         return jsonify({'message': 'Analysis failed. Please try again.'}), 403
