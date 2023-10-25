@@ -26,3 +26,7 @@ def test():
     except Exception as error:
         logging.error(error)
         return jsonify({'message': 'Analysis failed. Please try again.'}), 403
+
+@test_bp.route('/init', methods=['POST'])
+def init():
+    return jsonify({'message': 'service initialized'})
